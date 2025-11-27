@@ -30,6 +30,8 @@ $types: em, px;
 
 @each $sSystem, $nSystem in $systems {
     .#{ $sSystem }-auto, [ #{ $classPrefixCompat }-#{ $nSystem }="auto" ] { #{ $nSystem }: auto; }
+    .#{ $sSystem }-inner, [ #{ $classPrefixCompat }-#{ $nSystem }="gap-inner" ] { #{ $nSystem }: var( --#{ $varPrefix }-inner-gaps ); }
+    .#{ $sSystem }-outer, [ #{ $classPrefixCompat }-#{ $nSystem }="gap-outer" ] { #{ $nSystem }: var( --#{ $varPrefix }-outer-gaps ); }
 
     @each $type in $types {
         @for $i from 0 through $forMax {
@@ -45,10 +47,26 @@ $types: em, px;
                 #{ $nSystem }-#{ $nSide }: auto;
             }
         }
+        .#{ $sSystem }#{ $sSides }-inner {
+            @each $_, $nSide in $iSides {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-inner-gaps );
+            }
+        }
+        .#{ $sSystem }#{ $sSides }-outer {
+            @each $_, $nSide in $iSides {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-outer-gaps );
+            }
+        }
 
         @each $sSide, $nSide in $iSides {
             .#{ $sSystem }#{ $sSide }-auto, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="auto" ] {
                 #{ $nSystem }-#{ $nSide }: auto;
+            }
+            .#{ $sSystem }#{ $sSide }-inner, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="gap-inner" ] {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-inner-gaps );
+            }
+            .#{ $sSystem }#{ $sSide }-outer, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="gap-outer" ] {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-outer-gaps );
             }
         }
 
@@ -71,6 +89,9 @@ $types: em, px;
 
 @each $sOther, $nOther in $other {
     .#{ $sOther }-auto, [ #{ $classPrefixCompat }-#{ $sOther }="auto" ] { #{ $nOther }: auto; }
+    .#{ $sOther }-inner, [ #{ $classPrefixCompat }-#{ $sOther }="gap-inner" ] { #{ $nOther }: var( --#{ $varPrefix }-inner-gaps ); }
+    .#{ $sOther }-outer, [ #{ $classPrefixCompat }-#{ $sOther }="gap-outer" ] { #{ $nOther }: var( --#{ $varPrefix }-outer-gaps ); }
+
     @for $i from 0 through $forMax {
         .#{ $sOther }-#{ $i }, [ #{ $classPrefixCompat }-#{ $nOther }="#{ $i }%" ] {
             #{ $nOther }: #{ $i }#{ '%' };
