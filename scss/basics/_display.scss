@@ -22,3 +22,10 @@ $ops: bottom, center, left, right, top;
         object-position: $op;
     }
 }
+
+// Opacity
+@for $i from 0 through 100 {
+    .opacity-#{ $i }, [ #{ $classPrefixCompat }-opacity="#{ $i }%" ], [ #{ $classPrefixCompat }-opacity="#{ calc( $i / 100 ) }" ] {
+        opacity: #{ $i }#{ '%' };
+    }
+}
