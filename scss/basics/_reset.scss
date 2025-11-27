@@ -77,6 +77,8 @@ input, button {
 }
 
 // Smooth scroll
-@media (prefers-reduced-motion: no-preference) {
-    scroll-behavior: smooth;
+@media ( prefers-reduced-motion: no-preference ) {
+    html, body, :root {
+        scroll-behavior: smooth;
+    }
 }
