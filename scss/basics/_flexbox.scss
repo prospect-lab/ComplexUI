@@ -10,10 +10,10 @@ $aligns: baseline, start, end, center, stretch;
     }
 }
 @each $align in $aligns {
-    .items-at-#{ $align }, [ #{ $classPrefixCompat }-align-items="#{ $align }" ] {
+    .items-at-#{ $align }, .items-#{ $align }, [ #{ $classPrefixCompat }-align-items="#{ $align }" ] {
         align-items: $align;
     }
-    .self-at-#{ $align }, [ #{ $classPrefixCompat }-align-self="#{ $align }" ] {
+    .self-at-#{ $align }, .self-#{ $align }, [ #{ $classPrefixCompat }-align-self="#{ $align }" ] {
         align-self: $align;
     }
 }
@@ -52,11 +52,11 @@ body[ #{ $classPrefixCompat }-compat-flex ] * {
     flex-direction: row-reverse;
 }
 
-.column, [ #{ $classPrefixCompat }-flex-column-direction="forward" ] {
+.column, .col, [ #{ $classPrefixCompat }-flex-column-direction="forward" ] {
     @include column_mutuals;
     flex-direction: column;
 }
-.column-reverse, [ #{ $classPrefixCompat }-flex-column-direction="backward" ] {
+.column-reverse, .col-reverse, [ #{ $classPrefixCompat }-flex-column-direction="backward" ] {
     @include column_mutuals;
     flex-direction: column-reverse;
 }

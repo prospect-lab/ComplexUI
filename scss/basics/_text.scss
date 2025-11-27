@@ -13,7 +13,7 @@ $nWeights: lighter, normal, bold, bolder;
 }
 
 @each $weight in $nWeights {
-    .font-weight-#{ $weight } {
+    .font-weight-#{ $weight }, .#{ $weight } {
         font-weight: $weight;
     }
 }

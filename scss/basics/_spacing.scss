@@ -26,7 +26,13 @@ $other: (
     'g':  'gap'
 );
 
+$positions: static, relative, absolute, fixed, sticky;
+
 $types: em, px;
+
+@each $position in $positions {
+    .#{ $position } { position: $position; }
+}
 
 @each $sSystem, $nSystem in $systems {
     .#{ $sSystem }-auto, [ #{ $classPrefixCompat }-#{ $nSystem }="auto" ] { #{ $nSystem }: auto; }
