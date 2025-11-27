@@ -1,0 +1,25 @@
+project:
+    name: ComplexUI
+    description: ComplexUI is an open-source version of vComplex Infrastructure, an advanced UI Library for the web.
+    license: PPL-Mesa-2025
+
+settings:
+    truct:
+        reportActions: false
+
+depends:
+    commands:
+        - sass
+
+.build-scss:
+    description: Builds CSS source-code only.
+    actions:
+        -
+            action: shell
+            cmdlines:
+                - sass -s expanded scss/export.scss build/vcui.css
+
+.build:
+    description: Builds ComplexUI
+    actions:
+        - build-scss
