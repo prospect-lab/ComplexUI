@@ -57,6 +57,7 @@ body {
     background-color: var( --#{ $varPrefix }-back-color );
     font-family: var( --#{ $varPrefix }-font-stack-text );
     color: var( --#{ $varPrefix }-fore-color );
+    -webkit-text-size-adjust: 100%;
 }
 
 // Fix SVG's with no fill
