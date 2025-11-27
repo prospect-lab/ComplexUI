@@ -1,0 +1,105 @@
+@use '../consts' as *;
+
+$systems: (
+    'm': 'margin',
+    'p': 'padding'
+);
+
+$systemSides: (
+    'y': (
+        't': 'top',
+        'b': 'bottom',
+    ),
+    'x': (
+        'l': 'left',
+        'r': 'right'
+    )
+);
+
+$other: (
+    't':  'top',
+    'b':  'bottom',
+    'l':  'left',
+    'r':  'right',
+    'w':  'width',
+    'h':  'height',
+    'g':  'gap'
+);
+
+$types: em, px;
+
+@each $sSystem, $nSystem in $systems {
+    .#{ $sSystem }-auto { #{ $nSystem }: auto; }
+
+    @each $type in $types {
+        @for $i from 0 through $forMax {
+            .#{ $sSystem }-#{ $i }#{ $type } {
+                #{ $nSystem }: #{ $i }#{ $type };
+            }
+        }
+    }
+
+    @each $sSides, $iSides in $systemSides {
+        .#{ $sSystem }#{ $sSides }-auto {
+            @each $_, $nSide in $iSides {
+                #{ $nSystem }-#{ $nSide }: auto;
+            }
+        }
+
+        @each $sSide, $nSide in $iSides {
+            .#{ $sSystem }#{ $sSide }-auto {
+                #{ $nSystem }-#{ $nSide }: auto;
+            }
+        }
+
+        @each $type in $types {
+            @for $i from 0 through $forMax {
+                .#{ $sSystem }#{ $sSides }-#{ $i }#{ $type } {
+                    @each $_, $nSide in $iSides {
+                        #{ $nSystem }-#{ $nSide }: #{ $i }#{ $type };
+                    }
+                }
+                @each $sSide, $nSide in $iSides {
+                    .#{ $sSystem }#{ $sSide }-#{ $i }#{ $type } {
+                        #{ $nSystem }-#{ $nSide }: #{ $i }#{ $type };
+                    }
+                }
+            }
+        }
+    }
+}
+
+@each $sOther, $nOther in $other {
+    .#{ $sOther }-auto { #{ $nOther }: auto; }
+    @for $i from 0 through $forMax {
+        .#{ $sOther }-#{ $i } {
+            #{ $nOther }: #{ $i }#{ '%' };
+        }
+        @each $type in $types {
+            .#{ $sOther }-#{ $i }#{ $type } {
+                #{ $nOther }: #{ $i }#{ $type };
+            }
+        }
+    }
+}
+
+// Do it seperately for border-radius since it
+// does not support 'auto'
+@for $i from 0 through $forMax {
+    .rad-#{ $i } {
+        border-radius: #{ $i }#{ '%' };
+    }
+    @each $type in $types {
+        .rad-#{ $i }#{ $type } {
+            border-radius: #{ $i }#{ $type };
+        }
+    }
+}
+
+// Width and height essentials
+.w-full {
+    width: 100dvw;
+}
+.h-full {
+    height: 100dvh;
+}
