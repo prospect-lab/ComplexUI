@@ -29,11 +29,11 @@ $other: (
 $types: em, px;
 
 @each $sSystem, $nSystem in $systems {
-    .#{ $sSystem }-auto { #{ $nSystem }: auto; }
+    .#{ $sSystem }-auto, [ #{ $classPrefixCompat }-#{ $nSystem }="auto" ] { #{ $nSystem }: auto; }
 
     @each $type in $types {
         @for $i from 0 through $forMax {
-            .#{ $sSystem }-#{ $i }#{ $type } {
+            .#{ $sSystem }-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-#{ $nSystem }="#{ $i }#{ $type }" ] {
                 #{ $nSystem }: #{ $i }#{ $type };
             }
         }
@@ -47,7 +47,7 @@ $types: em, px;
         }
 
         @each $sSide, $nSide in $iSides {
-            .#{ $sSystem }#{ $sSide }-auto {
+            .#{ $sSystem }#{ $sSide }-auto, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="auto" ] {
                 #{ $nSystem }-#{ $nSide }: auto;
             }
         }
@@ -60,7 +60,7 @@ $types: em, px;
                     }
                 }
                 @each $sSide, $nSide in $iSides {
-                    .#{ $sSystem }#{ $sSide }-#{ $i }#{ $type } {
+                    .#{ $sSystem }#{ $sSide }-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="#{ $i }#{ $type }" ] {
                         #{ $nSystem }-#{ $nSide }: #{ $i }#{ $type };
                     }
                 }
@@ -70,13 +70,13 @@ $types: em, px;
 }
 
 @each $sOther, $nOther in $other {
-    .#{ $sOther }-auto { #{ $nOther }: auto; }
+    .#{ $sOther }-auto, [ #{ $classPrefixCompat }-#{ $sOther }="auto" ] { #{ $nOther }: auto; }
     @for $i from 0 through $forMax {
-        .#{ $sOther }-#{ $i } {
+        .#{ $sOther }-#{ $i }, [ #{ $classPrefixCompat }-#{ $nOther }="#{ $i }%" ] {
             #{ $nOther }: #{ $i }#{ '%' };
         }
         @each $type in $types {
-            .#{ $sOther }-#{ $i }#{ $type } {
+            .#{ $sOther }-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-#{ $nOther }="#{ $i }#{ $type }" ] {
                 #{ $nOther }: #{ $i }#{ $type };
             }
         }
@@ -86,20 +86,20 @@ $types: em, px;
 // Do it seperately for border-radius since it
 // does not support 'auto'
 @for $i from 0 through $forMax {
-    .rad-#{ $i } {
+    .rad-#{ $i }, [ #{ $classPrefixCompat }-border-radius="#{ $i }%" ] {
         border-radius: #{ $i }#{ '%' };
     }
     @each $type in $types {
-        .rad-#{ $i }#{ $type } {
+        .rad-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-border-radius="#{ $i }#{ $type }" ] {
             border-radius: #{ $i }#{ $type };
         }
     }
 }
 
 // Width and height essentials
-.w-full {
+.w-full, [ #{ $classPrefixCompat }-width="full" ] {
     width: 100dvw;
 }
-.h-full {
+.h-full, [ #{ $classPrefixCompat }-height="full" ] {
     height: 100dvh;
 }
