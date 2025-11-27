@@ -27,7 +27,7 @@ We've written several workflows for development.
 ```
 truct do
 ```
-This command will build everything into the `build/` directory, containing the CSS and JS artifacts.
+This command will build everything into the `build/` directory, containing the CSS artifacts.
 
 #### Building CSS only
 ```

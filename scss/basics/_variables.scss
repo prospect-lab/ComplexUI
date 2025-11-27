@@ -23,7 +23,7 @@
     --#{ $varPrefix }-success: var( --#{ $varPrefix }-green );
     --#{ $varPrefix }-information: var( --#{ $varPrefix }-blue );
 
-    --#{ $varPrefix }-faint-overlay-color: rgba( 255, 255, 255, 0.5 );
+    --#{ $varPrefix }-faint-overlay-color: rgba( 255, 255, 255, 0.8 );
     --#{ $varPrefix }-shadow-color: rgba( 0, 0, 0, 0.2 );
 
     --#{ $varPrefix }-border-radius: 4px;
@@ -32,7 +32,7 @@
 }
 
 @media ( prefers-color-scheme: dark ) {
-    * {
+    body * {
         color-scheme: dark;
     }
     :root {
@@ -44,7 +44,7 @@
 
         --#{ $varPrefix }-border-color: #404040;
 
-        --#{ $varPrefix }-faint-overlay-color: rgba( 0, 0, 0, 0.5 );
+        --#{ $varPrefix }-faint-overlay-color: rgba( 0, 0, 0, 0.8 );
         --#{ $varPrefix }-shadow-color: rgba( 0, 0, 0, 0.3 );
     }
 }

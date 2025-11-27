@@ -17,13 +17,14 @@ $systemSides: (
 );
 
 $other: (
-    't':  'top',
-    'b':  'bottom',
-    'l':  'left',
-    'r':  'right',
-    'w':  'width',
-    'h':  'height',
-    'g':  'gap'
+    't':    'top',
+    'b':    'bottom',
+    'l':    'left',
+    'r':    'right',
+    'w':    'width',
+    'h':    'height',
+    'g':    'gap',
+    'gap':  'gap'
 );
 
 $positions: static, relative, absolute, fixed, sticky;

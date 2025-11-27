@@ -62,7 +62,7 @@ body {
 
 // Fix SVG's with no fill
 svg {
-    fill: var( --#{ $varPrefix }-fore-color );
+    fill: currentColor;
 }
 
 // Fix selectability
