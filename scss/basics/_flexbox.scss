@@ -1,0 +1,62 @@
+@use '../mixins/flexbox' as *;
+@use '../consts' as *;
+
+$justifys: space-between, space-around, center, start, end, baseline;
+$aligns: baseline, start, end, center, stretch;
+
+@each $just in $justifys {
+    .justify-#{ $just }, [ #{ $classPrefixCompat }-justify-content="#{ $just }" ] {
+        justify-content: $just;
+    }
+}
+@each $align in $aligns {
+    .items-at-#{ $align }, [ #{ $classPrefixCompat }-align-items="#{ $align }" ] {
+        align-items: $align;
+    }
+    .self-at-#{ $align }, [ #{ $classPrefixCompat }-align-self="#{ $align }" ] {
+        align-self: $align;
+    }
+}
+
+.wrap, [ #{ $classPrefixCompat }-flex-isWrappable="true" ] {
+    flex-wrap: wrap;
+}
+.no-wrap, [ #{ $classPrefixCompat }-flex-isWrappable="false" ] {
+    flex-wrap: nowrap;
+}
+
+.grow, [ #{ $classPrefixCompat }-flex-canGrow="true" ] {
+    flex-grow: 1;
+}
+.no-grow, [ #{ $classPrefixCompat }-flex-canGrow="false" ] {
+    flex-grow: 0;
+}
+
+.shrink, [ #{ $classPrefixCompat }-flex-canShrink="true" ] {
+    flex-shrink: 1;
+}
+.no-shrink, [ #{ $classPrefixCompat }-flex-canShrink="false" ] {
+    flex-shrink: 0;
+}
+
+body[ #{ $classPrefixCompat }-compat-flex ] * {
+    flex-shrink: 1;
+}
+
+.row, [ #{ $classPrefixCompat }-flex-row-direction="forward" ] {
+    @include row_mutuals;
+    flex-direction: row;
+}
+.row-reverse, [ #{ $classPrefixCompat }-flex-row-direction="backward" ] {
+    @include row_mutuals;
+    flex-direction: row-reverse;
+}
+
+.column, [ #{ $classPrefixCompat }-flex-column-direction="forward" ] {
+    @include column_mutuals;
+    flex-direction: column;
+}
+.column-reverse, [ #{ $classPrefixCompat }-flex-column-direction="backward" ] {
+    @include column_mutuals;
+    flex-direction: column-reverse;
+}
