@@ -1,0 +1,114 @@
+@use '../consts' as *;
+
+.rounded {
+    border-radius: var( --#{ $varPrefix }-border-radius );
+}
+
+.stand-out {
+    background-color: var( --#{ $varPrefix }-back-color );
+    box-shadow: 0px 0px 7px -2px var( --#{ $varPrefix }-shadow-color );
+}
+
+.stand-out-fainted {
+    background-color: var( --#{ $varPrefix }-back-color-fainted );
+    box-shadow: 0px 0px 7px -2px var( --#{ $varPrefix }-shadow-color );
+}
+
+.shadow {
+    box-shadow: 0px 0px 7px -2px var( --#{ $varPrefix }-shadow-color );
+}
+
+.no-shadow {
+    box-shadow: none;
+}
+
+.transparent, [ #{ $classPrefixCompat }-back-color="transparent" ] {
+    background-color: transparent;
+}
+
+.bg, .default-bg, .default-back-color, [ #{ $classPrefixCompat }-back-color="default" ] {
+    background-color: var( --#{ $varPrefix }-back-color );
+}
+
+.bg-fainted, .default-fainted-bg, .default-back-color-fainted, [ #{ $classPrefixCompat }-back-color="fainted" ] {
+    background-color: var( --#{ $varPrefix }-back-color-fainted );
+}
+
+.border, [ #{ $classPrefixCompat }-borders-enabled="true" ] {
+    border: 1px solid var( --#{ $varPrefix }-border-color );
+}
+
+.no-border, [ #{ $classPrefixCompat }-borders-enabled="false" ] {
+    border: none;
+}
+
+$borders: (
+    'x': ( left, right ),
+    'y': ( top, bottom )
+);
+
+@each $sBorder, $nBorder in $borders {
+    .border-#{ $sBorder } {
+        @each $border in $nBorder {
+            border-#{ $border }: 1px solid var( --#{ $varPrefix }-border-color );
+        }
+    }
+    .no-border-#{ $sBorder } {
+        @each $border in $nBorder {
+            border-#{ $border }: none;
+        }
+    }
+    @each $border in $nBorder {
+        .border-#{ $border } {
+            border-#{ $border }: 1px solid var( --#{ $varPrefix }-border-color );
+        }
+        .no-border-#{ $border } {
+            border-#{ $border }: none;
+        }
+    }
+}
+
+.bg-layer-faintoverlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var( --#{ $varPrefix }-faint-overlay-color );
+}
+
+$presetColors: danger, warning, success, information, 'red', 'green', 'blue', 'yellow';
+@each $color in $presetColors {
+    .bg-#{ $color } { background-color: var( --#{ $varPrefix }-#{ $color } ); }
+    .fg-#{ $color } { color: var( --#{ $varPrefix }-#{ $color } ); }
+    .border-color-#{ $color } { border-color: var( --#{ $varPrefix }-#{ $color } ); }
+
+    .bg-layer-#{ $color } {
+        position: relative;
+        z-index: 2;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var( --#{ $varPrefix }-#{ $color } );
+            z-index: -2;
+        }
+    }
+}
+
+.font-display, [ #{ $classPrefixCompat }-font="display" ] {
+    font-family: var( --#{ $varPrefix }-font-stack-display );
+}
+
+.font-text, [ #{ $classPrefixCompat }-font="text" ] {
+    font-family: var( --#{ $varPrefix }-font-stack-text );
+}
+
+.font-monospace, [ #{ $classPrefixCompat }-font="code" ] {
+    font-family: var( --#{ $varPrefix }-font-stack-monospace );
+}
