@@ -75,3 +75,8 @@ input, button {
 [ #{ $classPrefixCompat }-isolated ], isolated {
     isolation: isolate;
 }
+
+// Smooth scroll
+@media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+}
