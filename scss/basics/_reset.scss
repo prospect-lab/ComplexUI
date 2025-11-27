@@ -1,0 +1,77 @@
+@use '../mixins/reset' as *;
+@use '../consts' as *;
+
+// Base element
+*, *::before, *::after {
+    @include reset-base;
+}
+
+// Inline text elements
+span, b, i, sub, sup, strong, del, ins, mark, small, a {
+    @include reset-text-base;
+}
+
+// Header elements
+h1, h2, h3, h4, h5, h6 {
+    @include reset-text-overflow;
+    text-wrap: balance;
+}
+
+// Paragraph elements
+p, article {
+    @include reset-text-overflow;
+    text-wrap: pretty;
+}
+
+// Correct display role
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+// Lists
+ol, ul {
+	list-style: none;
+}
+
+// Quotes
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+// Tables
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// Fix body
+body {
+    min-width: 100dvw;
+    min-height: 100dvh;
+    font-size: 16px;
+    background-color: var( --back-color );
+    @include reset-text-base;
+    font-family: var( --font-stack-text );
+}
+
+// Fix SVG's with no fill
+svg {
+    fill: var( --fore-color );
+}
+
+// Fix selectability
+input, button {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+// Isolation
+[ #{ $classPrefixCompat }-isolated ], isolated {
+    isolation: isolate;
+}

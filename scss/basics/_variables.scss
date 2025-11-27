@@ -1,0 +1,50 @@
+@use '../consts' as *;
+
+:root {
+    --#{ $varPrefix }-font-stack-text: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Droid Sans", "DejaVu Sans", "Adwaita Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Noto Emoji";
+    --#{ $varPrefix }-font-stack-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Display", "Noto Sans", "Droid Sans Display", "Droid Sans", "DejaVu Sans", "Adwaita Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Noto Emoji";
+    --#{ $varPrefix }-font-stack-monospace: ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", "Adwaita Mono", "Red Hat Mono", monospace;
+
+    --#{ $varPrefix }-fore-color: #080808;
+    --#{ $varPrefix }-fore-color-fainted: #303030;
+
+    --#{ $varPrefix }-back-color: #ffffff;
+    --#{ $varPrefix }-back-color-fainted: #efefef;
+
+    --#{ $varPrefix }-border-color: #c0c0c0;
+
+    --#{ $varPrefix }-red: #eb4034;
+    --#{ $varPrefix }-green: #32a852;
+    --#{ $varPrefix }-blue: #4287f5;
+    --#{ $varPrefix }-yellow: #fcba03;
+
+    --#{ $varPrefix }-danger: var( --#{ $varPrefix }-red );
+    --#{ $varPrefix }-warning: var( --#{ $varPrefix }-yellow );
+    --#{ $varPrefix }-success: var( --#{ $varPrefix }-green );
+    --#{ $varPrefix }-information: var( --#{ $varPrefix }-blue );
+
+    --#{ $varPrefix }-faint-overlay-color: rgba( 255, 255, 255, 0.5 );
+    --#{ $varPrefix }-shadow-color: rgba( 0, 0, 0, 0.2 );
+
+    --#{ $varPrefix }-border-radius: 4px;
+    --#{ $varPrefix }-outer-gaps: 40px;
+    --#{ $varPrefix }-inner-gaps: 20px;
+}
+
+@media ( prefers-color-scheme: dark ) {
+    * {
+        color-scheme: dark;
+    }
+    :root {
+        --#{ $varPrefix }-fore-color: #e0e0e0;
+        --#{ $varPrefix }-fore-color-fainted: #a0a0a0;
+
+        --#{ $varPrefix }-back-color: #161616;
+        --#{ $varPrefix }-back-color-fainted: #242424;
+
+        --#{ $varPrefix }-border-color: #404040;
+
+        --#{ $varPrefix }-faint-overlay-color: rgba( 0, 0, 0, 0.5 );
+        --#{ $varPrefix }-shadow-color: rgba( 0, 0, 0, 0.3 );
+    }
+}
