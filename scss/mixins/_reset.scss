@@ -4,13 +4,13 @@
     border: 0;
     font: inherit;
     box-sizing: border-box;
-    color: var( --fore-color );
+    color: inherit;
     outline: none;
 }
 
 @mixin reset-text-base {
-    font-family: var( --text );
     line-height: 1;
+    font: inherit;
     -webkit-font-smoothing: antialiased;
     vertical-align: baseline;
     text-decoration: none;
