@@ -18,6 +18,7 @@ depends:
             action: shell
             cmdlines:
                 - sass -s expanded scss/export.scss build/vcui.css
+                - sass -s compressed scss/export.scss build/vcui.min.css
 
 .build:
     description: Builds ComplexUI
