@@ -1,0 +1,22 @@
+@mixin reset-base {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    box-sizing: border-box;
+    color: inherit;
+    outline: none;
+}
+
+@mixin reset-text-base {
+    line-height: 1;
+    font: inherit;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
+}
+
+@mixin reset-text-overflow {
+    overflow-wrap: break-word;
+}

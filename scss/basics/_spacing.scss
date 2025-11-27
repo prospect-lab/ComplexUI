@@ -1,0 +1,133 @@
+@use '../consts' as *;
+
+$systems: (
+    'm': 'margin',
+    'p': 'padding'
+);
+
+$systemSides: (
+    'y': (
+        't': 'top',
+        'b': 'bottom',
+    ),
+    'x': (
+        'l': 'left',
+        'r': 'right'
+    )
+);
+
+$other: (
+    't':    'top',
+    'b':    'bottom',
+    'l':    'left',
+    'r':    'right',
+    'w':    'width',
+    'h':    'height',
+    'g':    'gap',
+    'gap':  'gap'
+);
+
+$positions: static, relative, absolute, fixed, sticky;
+
+$types: em, px;
+
+@each $position in $positions {
+    .#{ $position } { position: $position; }
+}
+
+@each $sSystem, $nSystem in $systems {
+    .#{ $sSystem }-auto, [ #{ $classPrefixCompat }-#{ $nSystem }="auto" ] { #{ $nSystem }: auto; }
+    .#{ $sSystem }-inner, [ #{ $classPrefixCompat }-#{ $nSystem }="gap-inner" ] { #{ $nSystem }: var( --#{ $varPrefix }-inner-gaps ); }
+    .#{ $sSystem }-outer, [ #{ $classPrefixCompat }-#{ $nSystem }="gap-outer" ] { #{ $nSystem }: var( --#{ $varPrefix }-outer-gaps ); }
+
+    @each $type in $types {
+        @for $i from 0 through $forMax {
+            .#{ $sSystem }-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-#{ $nSystem }="#{ $i }#{ $type }" ] {
+                #{ $nSystem }: #{ $i }#{ $type };
+            }
+        }
+    }
+
+    @each $sSides, $iSides in $systemSides {
+        .#{ $sSystem }#{ $sSides }-auto {
+            @each $_, $nSide in $iSides {
+                #{ $nSystem }-#{ $nSide }: auto;
+            }
+        }
+        .#{ $sSystem }#{ $sSides }-inner {
+            @each $_, $nSide in $iSides {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-inner-gaps );
+            }
+        }
+        .#{ $sSystem }#{ $sSides }-outer {
+            @each $_, $nSide in $iSides {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-outer-gaps );
+            }
+        }
+
+        @each $sSide, $nSide in $iSides {
+            .#{ $sSystem }#{ $sSide }-auto, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="auto" ] {
+                #{ $nSystem }-#{ $nSide }: auto;
+            }
+            .#{ $sSystem }#{ $sSide }-inner, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="gap-inner" ] {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-inner-gaps );
+            }
+            .#{ $sSystem }#{ $sSide }-outer, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="gap-outer" ] {
+                #{ $nSystem }-#{ $nSide }: var( --#{ $varPrefix }-outer-gaps );
+            }
+        }
+
+        @each $type in $types {
+            @for $i from 0 through $forMax {
+                .#{ $sSystem }#{ $sSides }-#{ $i }#{ $type } {
+                    @each $_, $nSide in $iSides {
+                        #{ $nSystem }-#{ $nSide }: #{ $i }#{ $type };
+                    }
+                }
+                @each $sSide, $nSide in $iSides {
+                    .#{ $sSystem }#{ $sSide }-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-#{ $nSystem }-#{ $nSide }="#{ $i }#{ $type }" ] {
+                        #{ $nSystem }-#{ $nSide }: #{ $i }#{ $type };
+                    }
+                }
+            }
+        }
+    }
+}
+
+@each $sOther, $nOther in $other {
+    .#{ $sOther }-auto, [ #{ $classPrefixCompat }-#{ $sOther }="auto" ] { #{ $nOther }: auto; }
+    .#{ $sOther }-inner, [ #{ $classPrefixCompat }-#{ $sOther }="gap-inner" ] { #{ $nOther }: var( --#{ $varPrefix }-inner-gaps ); }
+    .#{ $sOther }-outer, [ #{ $classPrefixCompat }-#{ $sOther }="gap-outer" ] { #{ $nOther }: var( --#{ $varPrefix }-outer-gaps ); }
+
+    @for $i from 0 through $forMax {
+        .#{ $sOther }-#{ $i }, [ #{ $classPrefixCompat }-#{ $nOther }="#{ $i }%" ] {
+            #{ $nOther }: #{ $i }#{ '%' };
+        }
+        @each $type in $types {
+            .#{ $sOther }-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-#{ $nOther }="#{ $i }#{ $type }" ] {
+                #{ $nOther }: #{ $i }#{ $type };
+            }
+        }
+    }
+}
+
+// Do it seperately for border-radius since it
+// does not support 'auto'
+@for $i from 0 through $forMax {
+    .rad-#{ $i }, [ #{ $classPrefixCompat }-border-radius="#{ $i }%" ] {
+        border-radius: #{ $i }#{ '%' };
+    }
+    @each $type in $types {
+        .rad-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-border-radius="#{ $i }#{ $type }" ] {
+            border-radius: #{ $i }#{ $type };
+        }
+    }
+}
+
+// Width and height essentials
+.w-full, [ #{ $classPrefixCompat }-width="full" ] {
+    width: 100dvw;
+}
+.h-full, [ #{ $classPrefixCompat }-height="full" ] {
+    height: 100dvh;
+}

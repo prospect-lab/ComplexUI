@@ -1,0 +1,49 @@
+@use '../consts' as *;
+
+$iWeights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+$nWeights: lighter, normal, bold, bolder;
+
+@each $weight in $iWeights {
+    .font-weight-#{ $weight },
+    .font-weight-#{ calc( $weight / 100 ) },
+    [ #{ $classPrefixCompat }-font-weight="#{ $weight }" ],
+    [ #{ $classPrefixCompat }-font-weight="#{ calc( $weight / 100 ) }" ] {
+        font-weight: $weight;
+    }
+}
+
+@each $weight in $nWeights {
+    .font-weight-#{ $weight }, .#{ $weight } {
+        font-weight: $weight;
+    }
+}
+
+.italic {
+    font-style: italic;
+}
+
+// Font sizes
+@for $i from 1 through 7 {
+    .font-size-#{ $i }, [ #{ $classPrefixCompat }-font-size="#{ $i }" ] {
+        font-size: #{ ( $i * $i ) + 9 }#{ 'px' };
+    }
+}
+
+// Advanced font sizes
+$types: em, px;
+@each $type in $types {
+    @for $i from 0 through $forMax {
+        .font-size-#{ $i }#{ $type }, [ #{ $classPrefixCompat }-font-size="#{ $i }#{ $type }" ] {
+            font-size: #{ $i }#{ $type };
+        }
+    }
+}
+
+// Better headers
+$headers: 1, 2, 3, 4, 5, 6;
+@each $header in $headers {
+    h#{ $header }, .header-#{ $header }, [ #{ $classPrefixCompat }-header-type="#{ $header }" ] {
+        font-size: #{ calc( 80 / $header ) }#{ 'px' };
+        font-weight: bold;
+    }
+}

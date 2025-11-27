@@ -1,0 +1,31 @@
+@use '../consts' as *;
+
+$displayTypes: block, inline, inline-block, flex, inline-flex, grid, inline-grid, flow-root, none, contents, table, table-row, list-item;
+@each $displayType in $displayTypes {
+    .d-#{ $displayType } {
+        display: $displayType;
+    }
+}
+
+// Object fit and position
+.fit-cover, [ #{ $classPrefixCompat }-obj-fit="cover" ] {
+    object-fit: cover;
+}
+
+.fit-contain, [ #{ $classPrefixCompat }-obj-fit="contain" ] {
+    object-fit: contain;
+}
+
+$ops: bottom, center, left, right, top;
+@each $op in $ops {
+    .op-#{ $op }, .obj-pos-#{ $op }, [ #{ $classPrefixCompat }-obj-position="#{ $op }" ] {
+        object-position: $op;
+    }
+}
+
+// Opacity
+@for $i from 0 through 100 {
+    .opacity-#{ $i }, [ #{ $classPrefixCompat }-opacity="#{ $i }%" ], [ #{ $classPrefixCompat }-opacity="#{ calc( $i / 100 ) }" ] {
+        opacity: #{ $i }#{ '%' };
+    }
+}
